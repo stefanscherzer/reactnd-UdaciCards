@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native'
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Platform,
+} from 'react-native'
 import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -49,8 +55,6 @@ class NewDeck extends Component {
     this.setState(() => ({ deck: '' }))
 
     this.toHome()
-
-
   }
 
   toHome = () => {
@@ -58,27 +62,34 @@ class NewDeck extends Component {
   }
 
   render() {
-    const { error } = this.state
+    const { error, deck } = this.state
 
     return (
       <View style={styles.container}>
-        <Text>
-          What is the title of your new deck?
-        </Text>
+        <View style={styles.center}>
+          <Text>
+            What is the title of your new deck?
+          </Text>
+        </View>
 
-        <FormLabel>Name</FormLabel>
-        <FormInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          placeholder="Deck Title"
-          placeholderTextColor="gray"
-          onChangeText={(deck) => this.setState({deck})}
-          />
+        <View>
+          <FormLabel>Name</FormLabel>
+          <FormInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            value={deck}
+            placeholder="Deck Title"
+            placeholderTextColor="gray"
+            onChangeText={(deck) => this.setState({deck})}
+            />
 
-        {error === true &&
-          <FormValidationMessage>{'This field is required'}</FormValidationMessage>
-        }
+          {error === true &&
+            <FormValidationMessage>{'This field is required'}</FormValidationMessage>
+          }
+        </View>
 
-        <SubmitBtn onPress={this.submit} />
+        <View style={{padding: 10}}>
+          <SubmitBtn onPress={this.submit} />
+        </View>
       </View>
     )
   }
@@ -89,11 +100,6 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: white
-  },
-  row: {
-    flexDirection: 'row',
-    flex: 1,
-    alignItems: 'center',
   },
   iosSubmitBtn: {
     backgroundColor: purple,
@@ -121,8 +127,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   center: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     marginLeft: 30,
     marginRight: 30,

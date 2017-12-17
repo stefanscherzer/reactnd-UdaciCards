@@ -10,9 +10,9 @@ export function submitEntry (entry) {
 
   console.log('async', entry);
 
-  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify({
+  return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(
     entry
-  }))
+  ))
 }
 
 // export function removeEntry (key) {

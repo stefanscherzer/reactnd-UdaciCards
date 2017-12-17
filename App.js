@@ -8,16 +8,14 @@ import reducer from './reducers'
 
 import Decks from './components/Decks'
 import NewDeck from './components/NewDeck'
-// import EntryDetail from './components/EntryDetail'
-// import Live from './components/Live'
+import DeckDetail from './components/DeckDetail'
+import AddCard from './components/AddCard'
 
 import { purple, white } from './utils/colors'
-import { setLocalNotification } from './utils/helpers'
+import { setLocalNotification } from './utils/notifications'
 
-import { FontAwesome, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { Constants } from 'expo'
-
-
 
 function UdaciStatusBar ({backgroundColor, ...props}) {
   return (
@@ -42,13 +40,6 @@ const Tabs = TabNavigator({
       tabBarIcon: ({ tintColor }) => <MaterialCommunityIcons name='library-plus' size={30} color={tintColor} />
     },
   },
-  // Live: {
-  //   screen: Live,
-  //   navigationOptions: {
-  //     tabBarLabel: 'Live',
-  //     tabBarIcon: ({ tintColor }) => <Ionicons name='ios-speedometer' size={30} color={tintColor} />
-  //   }
-  // }
 }, {
   navigationOptions: {
     header: null
@@ -73,15 +64,24 @@ const MainNavigator = StackNavigator({
   Home: {
     screen: Tabs,
   },
-  // EntryDetail: {
-  //   screen: EntryDetail,
-  //   navigationOptions: {
-  //     headerTintColor: white,
-  //     headerStyle: {
-  //       backgroundColor: purple,
-  //     }
-  //   }
-  // }
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple,
+      }
+    }
+  },
 })
 
 export default class App extends React.Component {
