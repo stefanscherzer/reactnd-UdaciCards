@@ -1,3 +1,5 @@
+// reducers/index.js
+
 import {
   GET_DECKS,
   SAVE_DECK_TITLE,
@@ -22,13 +24,10 @@ function decks (state = {}, action) {
       return {
         ...state,
         [deck]: {
-             ...state[deck],
-             questions : [...state[deck].questions, card ]
+          ...state[deck],
+          questions : [...state[deck].questions, card ]
         }
       }
-
-
-
     default :
       return state
   }

@@ -1,3 +1,5 @@
+// actions/index.js
+
 export const GET_DECKS = 'GET_DECKS'
 export const GET_DECK = 'GET_DECK'
 export const SAVE_DECK_TITLE = 'SAVE_DECK_TITLE'

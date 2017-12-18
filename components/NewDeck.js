@@ -1,3 +1,5 @@
+// components/NewDeck.js
+
 import React, { Component } from 'react'
 import {
   View,
@@ -6,11 +8,9 @@ import {
   StyleSheet,
   Platform,
 } from 'react-native'
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { FormLabel, FormInput } from 'react-native-elements'
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
-
-import { Ionicons } from '@expo/vector-icons'
 
 import TextButton from './TextButton'
 
@@ -29,10 +29,10 @@ function SubmitBtn ({ onPress }) {
     </TouchableOpacity>
   )
 }
+
 class NewDeck extends Component {
   state = {
     deck: 'Deck Title',
-    error: false,
   }
 
   submit = () => {
@@ -62,7 +62,7 @@ class NewDeck extends Component {
   }
 
   render() {
-    const { error, deck } = this.state
+    const { deck } = this.state
 
     return (
       <View style={styles.container}>
@@ -79,12 +79,9 @@ class NewDeck extends Component {
             value={deck}
             placeholder="Deck Title"
             placeholderTextColor="gray"
+            onFocus= {() => this.setState({deck : ''})}
             onChangeText={(deck) => this.setState({deck})}
             />
-
-          {error === true &&
-            <FormValidationMessage>{'This field is required'}</FormValidationMessage>
-          }
         </View>
 
         <View style={{padding: 10}}>

@@ -1,3 +1,5 @@
+// components/Decks.js
+
 import React, { Component } from 'react'
 import {
   View,
@@ -30,7 +32,7 @@ class Decks extends Component {
     const { dispatch } = this.props
 
     fetchDecksResults()
-      .then((decks) => { console.log('decks', decks); return decks; })
+      .then((decks) => { console.log('async storage decks', decks); return decks; })
       .then((decks) => dispatch(getDecks(decks)))
       .then(() => this.setState(() => ({ready: true})))
   }

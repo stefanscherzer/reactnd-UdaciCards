@@ -1,3 +1,5 @@
+// components/AddCard.js
+
 import React, { Component } from 'react'
 import {
   View,
@@ -6,14 +8,14 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native'
-import { FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
+import { FormLabel, FormInput } from 'react-native-elements'
 import { connect } from 'react-redux'
 
 import { white, purple } from '../utils/colors'
 
 import TextButton from './TextButton'
 
-// import { submitEntry } from '../utils/api'
+import { updateEntry } from '../utils/api'
 
 import { addCardToDeck } from '../actions'
 
@@ -49,23 +51,14 @@ class AddCard extends Component {
     console.log('answer', answer);
     console.log('add to', entryId);
 
-    // this.props.dispatch(addCardToDeck(
-    //   entryId,
-    //   { question: question, answer: answer }
-    // ))
-
-    // submitEntry({
-    //   [deck]: {
-    //     title: deck,
-    //     questions: []
-    //   }
-    // })
-    //
-    // this.setState(() => ({
-    //   deck: ''
-    // }))
+    updateEntry(entryId, { question: question, answer: answer })
 
     add({ question: question, answer: answer })
+
+    this.setState(() => ({
+      question: 'Please enter your question',
+      answer: 'Please enter your answer',
+    }))
 
     goBack()
   }
@@ -91,6 +84,7 @@ class AddCard extends Component {
             value={question}
             placeholder="Please enter your question"
             placeholderTextColor="gray"
+            onFocus= {() => this.setState({question : ''})}
             onChangeText={(question) => this.setState({question})}
             />
         </View>
@@ -101,6 +95,7 @@ class AddCard extends Component {
             value={answer}
             placeholder="Please enter your answer"
             placeholderTextColor="gray"
+            onFocus= {() => this.setState({answer : ''})}
             onChangeText={(answer) => this.setState({answer})}
             />
         </View>
@@ -164,12 +159,6 @@ function mapDispatchToProps (dispatch, { navigation }) {
   const { entryId } = navigation.state.params
 
   return {
-    // remove: () => dispatch(addEntry({
-    //   [entryId]: timeToString() === entryId
-    //     ? getDailyReminderValue()
-    //     : null
-    // })),
-
     add: (element) => dispatch(addCardToDeck(
       entryId,
       element

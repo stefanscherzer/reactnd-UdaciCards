@@ -1,3 +1,5 @@
+// App.js
+
 import React from 'react'
 import { View, Platform, StatusBar } from 'react-native'
 import { TabNavigator, StackNavigator } from 'react-navigation'

@@ -1,3 +1,5 @@
+// utils/api.js
+
 import { AsyncStorage } from 'react-native'
 import { formatDecksResults, DECKS_STORAGE_KEY } from './_decks'
 
@@ -7,20 +9,26 @@ export function fetchDecksResults () {
 }
 
 export function submitEntry (entry) {
-
-  console.log('async', entry);
-
   return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(
     entry
   ))
 }
 
-// export function removeEntry (key) {
-//   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY)
-//     .then((results) => {
-//       const data = JSON.parse(results)
-//       data[key] = undefined
-//       delete data[key]
-//       AsyncStorage.setItem(CALENDAR_STORAGE_KEY, JSON.stringify(data))
-//     })
-// }
+export function updateEntry (uid, entry) {
+  return AsyncStorage.getItem(DECKS_STORAGE_KEY)
+    .then( data => {
+      // the string value read from AsyncStorage has been assigned to data
+
+      // transform it back to an object
+      data = JSON.parse( data );
+
+      // add new element
+      data[uid].questions.push(entry);
+
+      //remove all the stored items
+      AsyncStorage.removeItem(DECKS_STORAGE_KEY);
+
+      //save the update items to AsyncStorage again
+      AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify( data ) );
+    })
+}
