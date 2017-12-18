@@ -57,7 +57,14 @@ class DeckDetail extends Component {
   }
 
   quiz = () => {
+    const { entryId } = this.props
+
     console.log('QUIZ button clicked');
+
+    this.props.navigation.navigate(
+      'Quiz',
+      { entryId: entryId }
+    );
   }
 
   render() {
@@ -76,9 +83,18 @@ class DeckDetail extends Component {
           <AddBtn onPress={this.add} />
         </View>
 
-        <View style={{padding: 10}}>
-          <QuizBtn onPress={this.quiz} />
-        </View>
+        {(deck.questions.length && deck.questions.length)
+          ?
+          <View style={{padding: 10}}>
+            <QuizBtn onPress={this.quiz} />
+          </View>
+          :
+          <View style={styles.center}>
+            <Text style={{textAlign: 'center', paddingTop: 20}}>
+              You have to add a card before you can start a quiz!
+            </Text>
+          </View>
+        }
       </View>
     )
   }
