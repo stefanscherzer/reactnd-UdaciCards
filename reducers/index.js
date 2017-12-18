@@ -23,7 +23,7 @@ function decks (state = {}, action) {
         ...state,
         [deck]: {
              ...state[deck],
-             questions : [...state.questions, [ card ]]
+             questions : [...state[deck].questions, card ]
         }
       }
 
