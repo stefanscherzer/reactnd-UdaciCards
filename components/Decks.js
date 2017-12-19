@@ -32,7 +32,6 @@ class Decks extends Component {
     const { dispatch } = this.props
 
     fetchDecksResults()
-      .then((decks) => { console.log('async storage decks', decks); return decks; })
       .then((decks) => dispatch(getDecks(decks)))
       .then(() => this.setState(() => ({ready: true})))
   }
@@ -46,8 +45,6 @@ class Decks extends Component {
     if (ready === false) {
       return <AppLoading />
     }
-
-    console.log('render decks', decks);
 
     return (
       <ScrollView>

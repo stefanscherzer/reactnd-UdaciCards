@@ -61,13 +61,9 @@ class Quiz extends Component {
   componentDidMount() {
     const { deck } = this.props
 
-    console.log('quiz cardsTotal', deck.questions.length);
-
     this.setState(() => ({
       cardsTotal: deck.questions.length,
     }))
-
-    console.log('quiz', this.state);
   }
 
   state = {
@@ -89,8 +85,6 @@ class Quiz extends Component {
   correct = () => {
     const { cardsDone, correct } = this.state
 
-    console.log('correct button clicked');
-
     this.setState(() => ({
       cardsDone: cardsDone + 1,
       correct: correct + 1,
@@ -100,8 +94,6 @@ class Quiz extends Component {
 
   incorrect = () => {
     const { cardsDone, incorrect } = this.state
-
-    console.log('incorrect button clicked');
 
     this.setState(() => ({
       cardsDone: cardsDone + 1,
@@ -118,8 +110,6 @@ class Quiz extends Component {
   render() {
     const { deck } = this.props
     const { cardsTotal, cardsDone, showQuestion, correct, incorrect } = this.state
-
-    console.log('quiz for', deck.title);
 
     if (!deck.questions[cardsDone]) {
         correctPercent = (correct/cardsTotal)*100;

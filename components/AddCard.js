@@ -47,10 +47,6 @@ class AddCard extends Component {
     const { add, goBack, entryId } = this.props
     const { question, answer } = this.state
 
-    console.log('question', question);
-    console.log('answer', answer);
-    console.log('add to', entryId);
-
     updateEntry(entryId, { question: question, answer: answer })
 
     add({ question: question, answer: answer })
@@ -66,8 +62,6 @@ class AddCard extends Component {
   render() {
     const { deck } = this.props
     const { question, answer } = this.state
-
-    console.log('add card for', deck.title);
 
     return (
       <View style={styles.container}>

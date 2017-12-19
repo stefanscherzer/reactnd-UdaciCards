@@ -48,8 +48,6 @@ class DeckDetail extends Component {
   add = () => {
     const { entryId } = this.props
 
-    console.log('ADD button clicked');
-
     this.props.navigation.navigate(
       'AddCard',
       { entryId: entryId }
@@ -59,8 +57,6 @@ class DeckDetail extends Component {
   quiz = () => {
     const { entryId } = this.props
 
-    console.log('QUIZ button clicked');
-
     this.props.navigation.navigate(
       'Quiz',
       { entryId: entryId }
@@ -69,9 +65,6 @@ class DeckDetail extends Component {
 
   render() {
     const { entryId, deck } = this.props
-
-    console.log('deck id', entryId);
-    console.log('deck details', deck);
 
     return (
       <View style={styles.container}>
