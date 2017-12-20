@@ -39,12 +39,22 @@ function IncorrectBtn ({ onPress }) {
   )
 }
 
+function RestartBtn ({ onPress }) {
+  return (
+    <TouchableOpacity
+      style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, {backgroundColor: purple}]}
+      onPress={onPress}>
+        <Text style={styles.submitBtnText}>Restart Quiz</Text>
+    </TouchableOpacity>
+  )
+}
+
 function DoneBtn ({ onPress }) {
   return (
     <TouchableOpacity
       style={[Platform.OS === 'ios' ? styles.iosSubmitBtn : styles.AndroidSubmitBtn, {backgroundColor: purple}]}
       onPress={onPress}>
-        <Text style={styles.submitBtnText}>Done</Text>
+        <Text style={styles.submitBtnText}>Back to Deck</Text>
     </TouchableOpacity>
   )
 }
@@ -102,6 +112,15 @@ class Quiz extends Component {
     }))
   }
 
+  restart = () => {
+    this.setState(() => ({
+      cardsDone: 0,
+      showQuestion: true,
+      correct: 0,
+      incorrect: 0,
+    }))
+  }
+
   end = () => {
     const { goBack } = this.props
     goBack()
@@ -125,6 +144,9 @@ class Quiz extends Component {
             </View>
             <View>
               <Text>Incorrect: {incorrect} ({incorrectPercent.toFixed(2)}%)</Text>
+            </View>
+            <View style={{padding: 10}}>
+              <RestartBtn onPress={this.restart} />
             </View>
             <View style={{padding: 10}}>
               <DoneBtn onPress={this.end} />

@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ScrollView,
   Platform,
-  // AsyncStorage,
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -37,8 +36,6 @@ class Decks extends Component {
   }
 
   render() {
-    // AsyncStorage.clear()
-
     const { decks } = this.props
     const { ready } = this.state
 

@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native'
+// import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { white, purple } from '../utils/colors'
@@ -143,8 +144,14 @@ function mapStateToProps (state, { navigation }) {
 function mapDispatchToProps (dispatch, { navigation }) {
   const { entryId } = navigation.state.params
 
+  // const navigateAction = NavigationActions.reset({
+  //   index: 0,
+  //   actions: [NavigationActions.navigate({routeName: 'Decks'})]
+  // })
+
   return {
     goBack: () => navigation.goBack(),
+    // goBack: () => { console.log('back'); navigation.dispatch(navigateAction); },
   }
 }
 
